@@ -74,10 +74,12 @@ class BrandGameService
             /**
              * @var GameCountryBlock $gameCountryBlock
              */
-            foreach ($listGameCountryBlock as $key => $gameCountryBlock) {
-                if ($brandGame->getGame()->getLaunchcode() === $gameCountryBlock->getGame()->getLaunchcode()) {
-                    $add = false;
-                    break;
+            if ($add) {
+                foreach ($listGameCountryBlock as $key => $gameCountryBlock) {
+                    if ($brandGame->getGame()->getLaunchcode() === $gameCountryBlock->getGame()->getLaunchcode()) {
+                        $add = false;
+                        break;
+                    }
                 }
             }
 
