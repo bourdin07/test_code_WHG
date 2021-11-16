@@ -19,6 +19,18 @@ class GameBrandBlockRepository extends ServiceEntityRepository
         parent::__construct($registry, GameBrandBlock::class);
     }
 
+    public function getByBrandid($brandid)
+    {
+        $a = "brandGame";
+        $qb = $this->createQueryBuilder($a);
+
+        $qb->select($a)
+            ->where("$a.brandid = :brandid OR $a.brandid = 0")
+            ->setParameters(["brandid" => $brandid]);
+
+        return $qb->getQuery()->getResult();
+    }
+
     // /**
     //  * @return GameBrandBlock[] Returns an array of GameBrandBlock objects
     //  */

@@ -470,6 +470,12 @@ class ComposerStaticInitbcae09fb97b01a7dfe23d278dd06db3b
     );
 
     public static $classMap = array (
+        'App\\Controller\\GameController' => __DIR__ . '/../..' . '/src/Controller/GameController.php',
+        'App\\DataFixtures\\BrandGameFixtures' => __DIR__ . '/../..' . '/src/DataFixtures/BrandGameFixtures.php',
+        'App\\DataFixtures\\GameBrandBlockFixtures' => __DIR__ . '/../..' . '/src/DataFixtures/GameBrandBlockFixtures.php',
+        'App\\DataFixtures\\GameCountryBlockFixtures' => __DIR__ . '/../..' . '/src/DataFixtures/GameCountryBlockFixtures.php',
+        'App\\DataFixtures\\GameFixtures' => __DIR__ . '/../..' . '/src/DataFixtures/GameFixtures.php',
+        'App\\DataFixtures\\GameProviderFixtures' => __DIR__ . '/../..' . '/src/DataFixtures/GameProviderFixtures.php',
         'App\\Entity\\BrandGame' => __DIR__ . '/../..' . '/src/Entity/BrandGame.php',
         'App\\Entity\\Game' => __DIR__ . '/../..' . '/src/Entity/Game.php',
         'App\\Entity\\GameBrandBlock' => __DIR__ . '/../..' . '/src/Entity/GameBrandBlock.php',
@@ -481,6 +487,7 @@ class ComposerStaticInitbcae09fb97b01a7dfe23d278dd06db3b
         'App\\Repository\\GameCountryBlockRepository' => __DIR__ . '/../..' . '/src/Repository/GameCountryBlockRepository.php',
         'App\\Repository\\GameProviderRepository' => __DIR__ . '/../..' . '/src/Repository/GameProviderRepository.php',
         'App\\Repository\\GameRepository' => __DIR__ . '/../..' . '/src/Repository/GameRepository.php',
+        'App\\Service\\BrandGameService' => __DIR__ . '/../..' . '/src/Service/BrandGameService.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Collator' => __DIR__ . '/..' . '/symfony/polyfill-intl-icu/Resources/stubs/Collator.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
@@ -2786,6 +2793,7 @@ class ComposerStaticInitbcae09fb97b01a7dfe23d278dd06db3b
         'Symfony\\Bundle\\MakerBundle\\Test\\MakerTestEnvironment' => __DIR__ . '/..' . '/symfony/maker-bundle/src/Test/MakerTestEnvironment.php',
         'Symfony\\Bundle\\MakerBundle\\Test\\MakerTestKernel' => __DIR__ . '/..' . '/symfony/maker-bundle/src/Test/MakerTestKernel.php',
         'Symfony\\Bundle\\MakerBundle\\Test\\MakerTestProcess' => __DIR__ . '/..' . '/symfony/maker-bundle/src/Test/MakerTestProcess.php',
+        'Symfony\\Bundle\\MakerBundle\\Test\\MakerTestRunner' => __DIR__ . '/..' . '/symfony/maker-bundle/src/Test/MakerTestRunner.php',
         'Symfony\\Bundle\\MakerBundle\\Util\\AutoloaderUtil' => __DIR__ . '/..' . '/symfony/maker-bundle/src/Util/AutoloaderUtil.php',
         'Symfony\\Bundle\\MakerBundle\\Util\\ClassDetails' => __DIR__ . '/..' . '/symfony/maker-bundle/src/Util/ClassDetails.php',
         'Symfony\\Bundle\\MakerBundle\\Util\\ClassNameDetails' => __DIR__ . '/..' . '/symfony/maker-bundle/src/Util/ClassNameDetails.php',

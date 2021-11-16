@@ -6,6 +6,7 @@ use App\Repository\GameProviderRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ORM\Table(name="game_providers")
  * @ORM\Entity(repositoryClass=GameProviderRepository::class)
  */
 class GameProvider

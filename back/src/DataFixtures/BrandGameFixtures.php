@@ -74,7 +74,7 @@ class BrandGameFixtures extends Fixture implements DependentFixtureInterface
 
         foreach ($listBrandGames as $value) {
             $brandGame = new BrandGame();
-            $brandGame->setLaunchcode($value["launchcode"]);
+            $brandGame->setGame($value["launchcode"]);
             $brandGame->setBrandid($value["brandid"]);
             $brandGame->setCategory($value["category"]);
             $brandGame->setHot($value["hot"]);

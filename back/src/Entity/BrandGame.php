@@ -6,7 +6,7 @@ use App\Repository\BrandGameRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Table(name="brand_games", uniqueConstraints={@ORM\UniqueConstraint(name="uniq_BrandGame_Game", columns={"launchcode"})})
+ * @ORM\Table(name="brand_games")
  * @ORM\Entity(repositoryClass=BrandGameRepository::class)
  */
 class BrandGame
@@ -19,10 +19,10 @@ class BrandGame
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Game::class, inversedBy="brandGames", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity=Game::class, cascade={"persist"})
      * @ORM\JoinColumn(name="launchcode", referencedColumnName="launchcode", nullable=false)
      */
-    private $launchcode;
+    private $game;
 
     /**
      * @ORM\Column(type="integer")
@@ -97,14 +97,14 @@ class BrandGame
         return $this;
     }
 
-    public function getLaunchcode(): ?Game
+    public function getGame(): ?Game
     {
-        return $this->launchcode;
+        return $this->game;
     }
 
-    public function setLaunchcode(?Game $gameLaunchcode): self
+    public function setGame(?Game $game): self
     {
-        $this->launchcode = $gameLaunchcode;
+        $this->game = $game;
 
         return $this;
     }

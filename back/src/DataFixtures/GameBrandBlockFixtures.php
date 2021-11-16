@@ -50,7 +50,7 @@ class GameBrandBlockFixtures extends Fixture implements DependentFixtureInterfac
 
         foreach ($listGameBrandBlocks as $value) {
             $gameBrandBlock = new GameBrandBlock();
-            $gameBrandBlock->setLaunchcode($value["launchcode"]);
+            $gameBrandBlock->setGame($value["launchcode"]);
             $gameBrandBlock->setBrandid($value["brandid"]);
 
             $manager->persist($gameBrandBlock);

@@ -19,6 +19,19 @@ class GameCountryBlockRepository extends ServiceEntityRepository
         parent::__construct($registry, GameCountryBlock::class);
     }
 
+    public function getByBrandidCountry($brandid, $country)
+    {
+        $a = "brandGame";
+        $qb = $this->createQueryBuilder($a);
+
+        $qb->select($a)
+            ->where("$a.brandid = :brandid OR $a.brandid = 0")
+            ->andWhere("$a.country = :country")
+            ->setParameters(["brandid" => $brandid, "country" => $country]);
+
+        return $qb->getQuery()->getResult();
+    }
+
     // /**
     //  * @return GameCountryBlock[] Returns an array of GameCountryBlock objects
     //  */

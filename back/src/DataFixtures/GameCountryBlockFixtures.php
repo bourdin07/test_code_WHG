@@ -54,11 +54,16 @@ class GameCountryBlockFixtures extends Fixture implements DependentFixtureInterf
                 "brandid" => 3,
                 "country" => "CN",
             ],
+            [
+                "launchcode" => $gameRepo->findOneBy(["launchcode" => "game8"]),
+                "brandid" => 0,
+                "country" => "UK",
+            ],
         ];
 
         foreach ($listGameBrandBlocks as $value) {
             $gameCountryBlock = new GameCountryBlock();
-            $gameCountryBlock->setLaunchcode($value["launchcode"]);
+            $gameCountryBlock->setGame($value["launchcode"]);
             $gameCountryBlock->setBrandid($value["brandid"]);
             $gameCountryBlock->setCountry($value["country"]);
 

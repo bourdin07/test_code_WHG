@@ -6,7 +6,7 @@ use App\Repository\GameCountryBlockRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Table(name="game_country_block", uniqueConstraints={@ORM\UniqueConstraint(name="uniq_GameCountryBlock_Game", columns={"launchcode"})})
+ * @ORM\Table(name="game_country_block")
  * @ORM\Entity(repositoryClass=GameCountryBlockRepository::class)
  */
 class GameCountryBlock
@@ -19,10 +19,10 @@ class GameCountryBlock
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Game::class, inversedBy="gameCountryBlocks", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity=Game::class, cascade={"persist"})
      * @ORM\JoinColumn(name="launchcode", referencedColumnName="launchcode", nullable=false)
      */
-    private $launchcode;
+    private $game;
 
     /**
      * @ORM\Column(type="integer")
@@ -63,14 +63,14 @@ class GameCountryBlock
         return $this;
     }
 
-    public function getLaunchcode(): ?Game
+    public function getGame(): ?Game
     {
-        return $this->launchcode;
+        return $this->game;
     }
 
-    public function setLaunchcode(?Game $gameLaunchcode): self
+    public function setGame(?Game $game): self
     {
-        $this->launchcode = $gameLaunchcode;
+        $this->game = $game;
 
         return $this;
     }

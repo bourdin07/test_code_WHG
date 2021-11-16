@@ -516,12 +516,12 @@
             'dev_requirement' => false,
         ),
         'symfony/maker-bundle' => array(
-            'pretty_version' => 'v1.35.0',
-            'version' => '1.35.0.0',
+            'pretty_version' => 'v1.36.0',
+            'version' => '1.36.0.0',
             'type' => 'symfony-bundle',
             'install_path' => __DIR__ . '/../symfony/maker-bundle',
             'aliases' => array(),
-            'reference' => '25058310408bb045772d2ec0ff7a3b6460fea2dd',
+            'reference' => '40b9b55c5d50825995820190f814936c06237b48',
             'dev_requirement' => true,
         ),
         'symfony/monolog-bridge' => array(

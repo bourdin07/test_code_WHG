@@ -6,6 +6,12 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Controller\\GameController' => $baseDir . '/src/Controller/GameController.php',
+    'App\\DataFixtures\\BrandGameFixtures' => $baseDir . '/src/DataFixtures/BrandGameFixtures.php',
+    'App\\DataFixtures\\GameBrandBlockFixtures' => $baseDir . '/src/DataFixtures/GameBrandBlockFixtures.php',
+    'App\\DataFixtures\\GameCountryBlockFixtures' => $baseDir . '/src/DataFixtures/GameCountryBlockFixtures.php',
+    'App\\DataFixtures\\GameFixtures' => $baseDir . '/src/DataFixtures/GameFixtures.php',
+    'App\\DataFixtures\\GameProviderFixtures' => $baseDir . '/src/DataFixtures/GameProviderFixtures.php',
     'App\\Entity\\BrandGame' => $baseDir . '/src/Entity/BrandGame.php',
     'App\\Entity\\Game' => $baseDir . '/src/Entity/Game.php',
     'App\\Entity\\GameBrandBlock' => $baseDir . '/src/Entity/GameBrandBlock.php',
@@ -17,6 +23,7 @@ return array(
     'App\\Repository\\GameCountryBlockRepository' => $baseDir . '/src/Repository/GameCountryBlockRepository.php',
     'App\\Repository\\GameProviderRepository' => $baseDir . '/src/Repository/GameProviderRepository.php',
     'App\\Repository\\GameRepository' => $baseDir . '/src/Repository/GameRepository.php',
+    'App\\Service\\BrandGameService' => $baseDir . '/src/Service/BrandGameService.php',
     'Attribute' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
     'Collator' => $vendorDir . '/symfony/polyfill-intl-icu/Resources/stubs/Collator.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
@@ -2322,6 +2329,7 @@ return array(
     'Symfony\\Bundle\\MakerBundle\\Test\\MakerTestEnvironment' => $vendorDir . '/symfony/maker-bundle/src/Test/MakerTestEnvironment.php',
     'Symfony\\Bundle\\MakerBundle\\Test\\MakerTestKernel' => $vendorDir . '/symfony/maker-bundle/src/Test/MakerTestKernel.php',
     'Symfony\\Bundle\\MakerBundle\\Test\\MakerTestProcess' => $vendorDir . '/symfony/maker-bundle/src/Test/MakerTestProcess.php',
+    'Symfony\\Bundle\\MakerBundle\\Test\\MakerTestRunner' => $vendorDir . '/symfony/maker-bundle/src/Test/MakerTestRunner.php',
     'Symfony\\Bundle\\MakerBundle\\Util\\AutoloaderUtil' => $vendorDir . '/symfony/maker-bundle/src/Util/AutoloaderUtil.php',
     'Symfony\\Bundle\\MakerBundle\\Util\\ClassDetails' => $vendorDir . '/symfony/maker-bundle/src/Util/ClassDetails.php',
     'Symfony\\Bundle\\MakerBundle\\Util\\ClassNameDetails' => $vendorDir . '/symfony/maker-bundle/src/Util/ClassNameDetails.php',
