@@ -1,0 +1,63 @@
+version: '3'
+
+services:
+  database:
+    # network_mode: bridge
+    tty: true
+    container_name: Test_Code_WHG_Db
+    # Image: https://hub.docker.com/_/mysql
+    image: mysql:${MYSQL_VERSION:-8.0}
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-ChangeMe}
+      # Autres variables d'environement possibles :
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-test_code_whg}
+      # MYSQL_USER: ${MYSQL_USER:-symfony}
+      # MYSQL_PASSWORD: ${MYSQL_PASSWORD:-ChangeMe}
+      # MYSQL_ALLOW_EMPTY_PASSWORD: yes
+      # ...
+    volumes:
+      - data:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin
+    links:
+      - database
+    restart: always
+    ports:
+      - 8002:80
+    environment:
+      - PMA_ARBITRARY=1
+  backend:
+    # network_mode: bridge
+    tty: true
+    container_name: Test_Code_WHG_back
+    image: testproject/whg/backend:dev
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    command: ["bash", "-c", "symfony --no-interaction server:stop; symfony --no-interaction server:start"]
+    ports:
+      - "8001:8000"
+    volumes:
+      - ./back:/var/www/default
+    environment:
+      ENV_VAR: "value"
+  frontend:
+    container_name: Test_Code_WHG_front
+    image: testproject/whg/front:dev
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3000"
+    volumes:
+      - ./front:/app
+    stdin_open: true
+    environment:
+      - 'EXTEND_ESLINT=true'
+
+
+volumes:
+  data:
+    name: data_mysql
