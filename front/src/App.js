@@ -167,6 +167,7 @@ const App = ({ }) => {
                           <p>rtp : {gameBrande.game.rtp}</p>
                           <p>Hot : {gameBrande.hot ? "Yes" : "No"}</p>
                           <p>New : {gameBrande.new ? "Yes" : "No"}</p>
+                          <p>Game provider : {gameBrande.game.gameProvider.name}</p>
                         </Col>
                       </Row>
                     </ListGroup.Item>

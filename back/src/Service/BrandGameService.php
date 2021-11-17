@@ -45,49 +45,75 @@ class BrandGameService
         $this->logger = $logger;
     }
 
+    /**
+     * Version 1 to get list of games
+     * Better because it's querying directly in the database
+     *
+     * @param integer $brandid
+     * @param string $country
+     * @param string $category
+     *
+     * @return array
+     */
     public function getListGames($brandid, $country, $category)
     {
-        $listBrandGameToReturn = [];
-
-        $listGameBrandBlock = $this->gameBrandBlockRepo->getByBrandid($brandid);
-        $listGameCountryBlock = $this->gameCountryBlockRepo->getByBrandidCountry($brandid, $country);
-
-        if ($category == "all") {
-            $listBrandGame = $this->brandGameRepo->findBy(["brandid" => $brandid]);
-        } else {
-            $listBrandGame = $this->brandGameRepo->findBy(["brandid" => $brandid, "category" => $category]);
-        }
-
-        foreach ($listBrandGame as $key => $brandGame) {
-            $add = true;
-
-            /**
-             * @var GameBrandBlock $gameBrandBlock
-             */
-            foreach ($listGameBrandBlock as $key => $gameBrandBlock) {
-                if ($brandGame->getGame()->getLaunchcode() === $gameBrandBlock->getGame()->getLaunchcode()) {
-                    $add = false;
-                    break;
-                }
-            }
-
-            /**
-             * @var GameCountryBlock $gameCountryBlock
-             */
-            if ($add) {
-                foreach ($listGameCountryBlock as $key => $gameCountryBlock) {
-                    if ($brandGame->getGame()->getLaunchcode() === $gameCountryBlock->getGame()->getLaunchcode()) {
-                        $add = false;
-                        break;
-                    }
-                }
-            }
-
-            if ($add) {
-                $listBrandGameToReturn[] = $brandGame;
-            }
-        }
-
-        return $listBrandGameToReturn;
+        return $this->brandGameRepo->getListBrandGames($brandid, $country, $category);
     }
+
+
+    /**
+     * Version 2 to get list of games
+     * Slower due of foreach statements
+     *
+     * @param integer $brandid
+     * @param string $country
+     * @param string $category
+     *
+     * @return array
+     */
+    // public function getListGames($brandid, $country, $category)
+    // {
+    //     $listBrandGameToReturn = [];
+
+    //     $listGameBrandBlock = $this->gameBrandBlockRepo->getByBrandid($brandid);
+    //     $listGameCountryBlock = $this->gameCountryBlockRepo->getByBrandidCountry($brandid, $country);
+
+    //     if ($category == "all") {
+    //         $listBrandGame = $this->brandGameRepo->findBy(["brandid" => $brandid]);
+    //     } else {
+    //         $listBrandGame = $this->brandGameRepo->findBy(["brandid" => $brandid, "category" => $category]);
+    //     }
+
+    //     foreach ($listBrandGame as $key => $brandGame) {
+    //         $add = true;
+
+    //         /**
+    //          * @var GameBrandBlock $gameBrandBlock
+    //          */
+    //         foreach ($listGameBrandBlock as $key => $gameBrandBlock) {
+    //             if ($brandGame->getGame()->getLaunchcode() === $gameBrandBlock->getGame()->getLaunchcode()) {
+    //                 $add = false;
+    //                 break;
+    //             }
+    //         }
+
+    //         /**
+    //          * @var GameCountryBlock $gameCountryBlock
+    //          */
+    //         if ($add) {
+    //             foreach ($listGameCountryBlock as $key => $gameCountryBlock) {
+    //                 if ($brandGame->getGame()->getLaunchcode() === $gameCountryBlock->getGame()->getLaunchcode()) {
+    //                     $add = false;
+    //                     break;
+    //                 }
+    //             }
+    //         }
+
+    //         if ($add) {
+    //             $listBrandGameToReturn[] = $brandGame;
+    //         }
+    //     }
+
+    //     return $listBrandGameToReturn;
+    // }
 }

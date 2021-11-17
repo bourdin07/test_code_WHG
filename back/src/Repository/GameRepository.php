@@ -2,8 +2,12 @@
 
 namespace App\Repository;
 
+use App\Entity\BrandGame;
 use App\Entity\Game;
+use App\Entity\GameBrandBlock;
+use App\Entity\GameCountryBlock;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -17,6 +21,31 @@ class GameRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Game::class);
+    }
+
+    public function getListGames($brandid, $country, $category)
+    {
+        $a = "g";
+        $qb = $this->createQueryBuilder($a);
+        $qb->addSelect($a)
+            ->join(GameBrandBlock::class, "gbb", Join::WITH, "g.launchcode = gbb.game")
+            ->join(GameCountryBlock::class, "gcb", Join::WITH, "g.launchcode = gcb.game")
+            ->join(BrandGame::class, "bg", Join::WITH, "g.launchcode = bg.game")
+            ->where("bg.brandid = :brandid")
+            ->andWhere("gbb.brandid <> :brandid")
+            ->andWhere("gbb.brandid <> 0")
+            ->andWhere("gcb.brandid <> :brandid")
+            ->andWhere("gcb.country <> :country")
+            ->andWhere("gcb.brandid <> 0");
+
+        if ($category !== "all") {
+            $qb->andWhere("bg.category = :category")
+                ->setParameters(["brandid" => $brandid, "country" => $country, "category" => $category]);
+        } else {
+            $qb->setParameters(["brandid" => $brandid, "country" => $country]);
+        }
+
+        return $qb->getQuery()->getResult();
     }
 
     // /**
