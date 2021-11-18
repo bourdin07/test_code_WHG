@@ -70,6 +70,13 @@ class BrandGameFixtures extends Fixture implements DependentFixtureInterface
                 "hot" => true,
                 "new" => false,
             ],
+            [
+                "launchcode" => $gameRepo->findOneBy(["launchcode" => "game9"]),
+                "brandid" => 1,
+                "category" => "Category 1",
+                "hot" => true,
+                "new" => false,
+            ],
         ];
 
         foreach ($listBrandGames as $value) {

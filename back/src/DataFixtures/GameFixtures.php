@@ -62,6 +62,12 @@ class GameFixtures extends Fixture implements DependentFixtureInterface
                 "rtp" => 0.33,
                 "game_provider" => $gameProviderRepo->find(4),
             ],
+            [
+                "launchcode" => "game9",
+                "name" => "Game 9",
+                "rtp" => 0.33,
+                "game_provider" => $gameProviderRepo->find(3),
+            ],
         ];
 
         foreach ($listGames as $value) {

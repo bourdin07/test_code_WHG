@@ -4,6 +4,7 @@ import { service } from '.';
 import { useState } from 'react';
 import { Formik } from "formik";
 import * as Yup from "yup";
+import { NotificationContainer, NotificationManager } from 'react-notifications';
 
 const App = ({ }) => {
   const listCategory = [
@@ -27,6 +28,25 @@ const App = ({ }) => {
   ];
   const [listBrandGame, setListBrandGame] = useState([]);
   const [dataToSend, setDataToSend] = useState({});
+
+  const createNotification = (type, message = "", title = "") => {
+    switch (type) {
+      case 'info':
+        return NotificationManager.info(message, title);
+        break;
+      case 'success':
+        return NotificationManager.success(message, title);
+        break;
+      case 'warning':
+        return NotificationManager.warning(message, 'Close after 3000ms', 3000);
+        break;
+      case 'error':
+        return NotificationManager.error(message, 'Click me!', 5000, () => {
+          alert('callback');
+        });
+        break;
+    }
+  }
 
   const getListGames = () => {
     service.game
@@ -152,7 +172,11 @@ const App = ({ }) => {
                   return (
                     <ListGroup.Item
                       key={`list-item-${index}`}
-                      onClick={() => { console.log(gameBrande.game.launchcode); alert("launchcode : " + gameBrande.game.launchcode); }}
+                      onClick={() => {
+                        console.log(gameBrande.game.launchcode);
+                        // alert("launchcode : " + gameBrande.game.launchcode);
+                        createNotification("info", "launchcode = " + gameBrande.game.launchcode);
+                      }}
                     >
                       <Row>
                         <Col>
@@ -168,6 +192,7 @@ const App = ({ }) => {
                           <p>Hot : {gameBrande.hot ? "Yes" : "No"}</p>
                           <p>New : {gameBrande.new ? "Yes" : "No"}</p>
                           <p>Game provider : {gameBrande.game.gameProvider.name}</p>
+                          <p>Brandid : {gameBrande.brandid}</p>
                         </Col>
                       </Row>
                     </ListGroup.Item>
@@ -185,6 +210,7 @@ const App = ({ }) => {
       <footer>
 
       </footer>
+      <NotificationContainer />
     </div>
   );
 }

@@ -55,10 +55,10 @@ class BrandGameService
      *
      * @return array
      */
-    public function getListGames($brandid, $country, $category)
-    {
-        return $this->brandGameRepo->getListBrandGames($brandid, $country, $category);
-    }
+    // public function getListGames($brandid, $country, $category)
+    // {
+    //     return $this->brandGameRepo->getListBrandGames($brandid, $country, $category);
+    // }
 
 
     /**
@@ -71,49 +71,51 @@ class BrandGameService
      *
      * @return array
      */
-    // public function getListGames($brandid, $country, $category)
-    // {
-    //     $listBrandGameToReturn = [];
+    public function getListGames($brandid, $country, $category)
+    {
+        $listBrandGameToReturn = [];
 
-    //     $listGameBrandBlock = $this->gameBrandBlockRepo->getByBrandid($brandid);
-    //     $listGameCountryBlock = $this->gameCountryBlockRepo->getByBrandidCountry($brandid, $country);
+        // Retrieves list of GameBrandBlock
+        $listGameBrandBlock = $this->gameBrandBlockRepo->getByBrandid($brandid);
+        // Retrieves list of GameCountryBlock
+        $listGameCountryBlock = $this->gameCountryBlockRepo->getByBrandidCountry($brandid, $country);
 
-    //     if ($category == "all") {
-    //         $listBrandGame = $this->brandGameRepo->findBy(["brandid" => $brandid]);
-    //     } else {
-    //         $listBrandGame = $this->brandGameRepo->findBy(["brandid" => $brandid, "category" => $category]);
-    //     }
+        if ($category == "all") {
+            $listBrandGame = $this->brandGameRepo->findBy(["brandid" => $brandid]);
+        } else {
+            $listBrandGame = $this->brandGameRepo->findBy(["brandid" => $brandid, "category" => $category]);
+        }
 
-    //     foreach ($listBrandGame as $key => $brandGame) {
-    //         $add = true;
+        foreach ($listBrandGame as $key => $brandGame) {
+            $add = true;
 
-    //         /**
-    //          * @var GameBrandBlock $gameBrandBlock
-    //          */
-    //         foreach ($listGameBrandBlock as $key => $gameBrandBlock) {
-    //             if ($brandGame->getGame()->getLaunchcode() === $gameBrandBlock->getGame()->getLaunchcode()) {
-    //                 $add = false;
-    //                 break;
-    //             }
-    //         }
+            /**
+             * @var GameBrandBlock $gameBrandBlock
+             */
+            foreach ($listGameBrandBlock as $key => $gameBrandBlock) {
+                if ($brandGame->getGame()->getLaunchcode() === $gameBrandBlock->getGame()->getLaunchcode()) {
+                    $add = false;
+                    break;
+                }
+            }
 
-    //         /**
-    //          * @var GameCountryBlock $gameCountryBlock
-    //          */
-    //         if ($add) {
-    //             foreach ($listGameCountryBlock as $key => $gameCountryBlock) {
-    //                 if ($brandGame->getGame()->getLaunchcode() === $gameCountryBlock->getGame()->getLaunchcode()) {
-    //                     $add = false;
-    //                     break;
-    //                 }
-    //             }
-    //         }
+            /**
+             * @var GameCountryBlock $gameCountryBlock
+             */
+            if ($add) {
+                foreach ($listGameCountryBlock as $key => $gameCountryBlock) {
+                    if ($brandGame->getGame()->getLaunchcode() === $gameCountryBlock->getGame()->getLaunchcode()) {
+                        $add = false;
+                        break;
+                    }
+                }
+            }
 
-    //         if ($add) {
-    //             $listBrandGameToReturn[] = $brandGame;
-    //         }
-    //     }
+            if ($add) {
+                $listBrandGameToReturn[] = $brandGame;
+            }
+        }
 
-    //     return $listBrandGameToReturn;
-    // }
+        return $listBrandGameToReturn;
+    }
 }
