@@ -5,3 +5,6 @@
 - `docker-compose run --rm --entrypoint=npm frontend ci`
 - `docker-compose run --rm backend bash` then inside the container :
     - `composer install`
+
+2/ Run containers
+- `docker-compose up -d` 
