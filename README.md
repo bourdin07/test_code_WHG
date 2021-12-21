@@ -10,3 +10,11 @@
 
 2/ Run containers
 - `docker-compose up -d` 
+
+## Services docker
+| Services        | Version               | Accès                 |
+|:----------------|:---------------------:|:----------------------|
+| database        | MySQL / 8             |                       |
+| phpmyadmin      |                       | http://localhost:81   |
+| backend         | PHP 8.0 / Symfony 5.3 | http://localhost:8001 |
+| frontend        | Node 14 / React 17    | http://localhost:3001 |
