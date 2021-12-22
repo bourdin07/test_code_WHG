@@ -5,11 +5,16 @@
 - `docker-compose run --rm --entrypoint=npm frontend ci`
 - `docker-compose run --rm backend bash` then inside the container :
     - `composer install`
-    - `./reset_db.sh` execute the bash file to reinitiliaze the database with the dataset
     - `Ctrl+D` to exit the container
 
 2/ Run containers
 - `docker-compose up -d` 
+
+3/ Initialize data fixtures
+- `docker exec -it Test_Code_WHG_back bash` to enter inside the container
+- Make sure that the `database` docker service is running
+- `./reset_db.sh` execute the bash file to reinitiliaze the database with the dataset
+- `Ctrl+D` to exit the container
 
 ## Services docker
 | Services        | Version               | Accès                 |
