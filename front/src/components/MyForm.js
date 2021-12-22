@@ -3,9 +3,11 @@ import { Container, Col, Row, Button, Form, Card, ListGroup } from "react-bootst
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { service } from "..";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AppContext } from "../App";
 
 const MyForm = ({ setListBrandGame }) => {
+  const contextValue = useContext(AppContext);
   const listCategory = [
     { value: "all", label: "All category" },
     { value: "Category 1", label: "Category 1" },

@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import { Container, Col, Row, Button, Form, Card, ListGroup } from "react-bootstrap";
+import { AppContext } from "../App";
 
-const ListGame = ({ listBrandGame, createNotification }) => {
+const ListGame = ({ listBrandGame }) => {
+  const contextValue = useContext(AppContext);
+
   return (
     <>
       <ListGroup variant="flush">
@@ -11,7 +15,7 @@ const ListGame = ({ listBrandGame, createNotification }) => {
               onClick={() => {
                 console.log(gameBrande.game.launchcode);
                 // alert("launchcode : " + gameBrande.game.launchcode);
-                createNotification("info", "launchcode = " + gameBrande.game.launchcode);
+                contextValue.createNotification("info", "launchcode = " + gameBrande.game.launchcode);
               }}
             >
               <Row>

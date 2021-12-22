@@ -1,12 +1,14 @@
 import './App.css';
 import { Container, Col, Row, Button, Form, Card, ListGroup } from "react-bootstrap";
 import { service } from '.';
-import { useState } from 'react';
+import { createContext, useState } from 'react';
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import MyForm from './components/MyForm';
 import ListGame from './components/ListGame';
+
+export const AppContext = createContext();
 
 const App = ({ }) => {
   const [listBrandGame, setListBrandGame] = useState([]);
@@ -31,40 +33,41 @@ const App = ({ }) => {
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <AppContext.Provider value={{createNotification}}>
+      <div className="App">
+        <header className="App-header">
 
-      </header>
-      <Container>
-        <Card>
+        </header>
+        <Container>
+          <Card>
 
-          <Card.Header>
-            <Row>
-              {/* Form */}
-              <MyForm setListBrandGame={setListBrandGame} />
-            </Row>
-          </Card.Header>
+            <Card.Header>
+              <Row>
+                {/* Form */}
+                <MyForm setListBrandGame={setListBrandGame} />
+              </Row>
+            </Card.Header>
 
-          {/* List Game content */}
-          <Card.Body>
-            <Row>
-              <ListGame
-                createNotification={createNotification}
-                listBrandGame={listBrandGame}
-              />
-            </Row>
-          </Card.Body>
+            {/* List Game content */}
+            <Card.Body>
+              <Row>
+                <ListGame
+                  listBrandGame={listBrandGame}
+                />
+              </Row>
+            </Card.Body>
 
-        </Card>
-        <Row>
+          </Card>
+          <Row>
 
-        </Row>
-      </Container>
-      <footer>
+          </Row>
+        </Container>
+        <footer>
 
-      </footer>
-      <NotificationContainer />
-    </div>
+        </footer>
+        <NotificationContainer />
+      </div>
+    </AppContext.Provider>
   );
 }
 
