@@ -18,3 +18,6 @@
 | phpmyadmin      |                       | http://localhost:81   |
 | backend         | PHP 8.0 / Symfony 5.3 | http://localhost:8001 |
 | frontend        | Node 14 / React 17    | http://localhost:3001 |
+
+- phpmyadmin server : `database`
+- phpmyadmin username / password : `root` / `ChangeMe`
