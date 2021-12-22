@@ -12,7 +12,7 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Class RandomController
+ * Class GameController
  * @package App\Controller
  *
  * @Rest\Route("/game")
