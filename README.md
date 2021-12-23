@@ -31,7 +31,7 @@
 
 4/ Stopping all containers or specific
 - `docker stop <container name>` to stop specific container
-- `docker-compose -f 'docker-compose.yml'` to stop all containers inside the project
+- `docker-compose -f 'docker-compose.yml' stop` to stop all containers inside the project
 
 5/ Down all containers
 - `docker-compose -f 'docker-compose.yml' down` to remove the containers network
