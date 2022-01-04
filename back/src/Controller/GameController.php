@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use FOS\RestBundle\Controller\Annotations as Rest;
+use FOS\RestBundle\Request\ParamFetcher;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -20,14 +21,16 @@ use Symfony\Component\HttpFoundation\Request;
 class GameController extends AbstractFOSRestController
 {
     /**
-     * @Rest\Post("/all")
+     * @Rest\Get("/all")
+     * @Rest\QueryParam(name="brandid")
+     * @Rest\QueryParam(name="country")
+     * @Rest\QueryParam(name="category")
      */
-    public function getListGame(Request $request, BrandGameService $brandGameService)
+    public function getListGame(ParamFetcher $paramFetcher, BrandGameService $brandGameService)
     {
-        $content = json_decode($request->getContent(), true);
-        $brandid = $content["brandid"];
-        $country = $content["country"];
-        $category = $content["category"];
+        $brandid = $paramFetcher->get("brandid");
+        $country = $paramFetcher->get("country");
+        $category = $paramFetcher->get("category");
 
         return $brandGameService->getListGames($brandid, $country, $category);
     }
